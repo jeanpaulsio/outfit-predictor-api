@@ -58,8 +58,8 @@ outfits = [
 
 outfits.each do |outfit|
   Outfit.create!(
-    shirt_id: Shirt.find_by_color(outfit.shirt).id,
-    pant_id:  Pant.find_by_color(outfit.pant).id,
-    date:     outfit.date
+    shirt_id: Shirt.find_by_color(outfit[:shirt]).id,
+    pant_id:  Pant.find_by_color(outfit[:pant]).id,
+    date:     outfit[:date]
   )
 end

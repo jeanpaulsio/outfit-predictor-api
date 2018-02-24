@@ -1,5 +1,24 @@
 # Outfit Predictor
 
+## Schema
+
+|     Shirts      |
+| ----- | ------- |
+| id    | integer |
+| color | string  |
+
+|     Pants       |
+| ----- | ------- |
+| id    | integer |
+| color | string  |
+
+|        Outfit        |
+| -------- | --------- |
+| id       | integer   |
+| date     | date      |
+| shirt_id | reference |
+| pant_id  | reference |
+
 __Decision Trees__
 
 ```ruby

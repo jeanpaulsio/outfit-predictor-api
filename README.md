@@ -2,37 +2,55 @@
 
 ## Schema
 
-| First Header  | Second Header |
-| ------------- | ------------- |
-| Content Cell  | Content Cell  |
-| Content Cell  | Content Cell  |
-
 <table>
   <tr>
-    <td>One</td>
-    <td>Two</td>
+    <td colspan="2">Shirts</td>
   </tr>
   <tr>
-    <td colspan="2">Three</td>
+    <td>id</td>
+    <td>integer</td>
+  </tr>
+  <tr>
+    <td>color</td>
+    <td>string</td>
   </tr>
 </table>
 
-|     Shirts      |
-| ----- | ------- |
-| id    | integer |
-| color | string  |
+<table>
+  <tr>
+    <td colspan="2">Pants</td>
+  </tr>
+  <tr>
+    <td>id</td>
+    <td>integer</td>
+  </tr>
+  <tr>
+    <td>color</td>
+    <td>string</td>
+  </tr>
+</table>
 
-|     Pants       |
-| ----- | ------- |
-| id    | integer |
-| color | string  |
-
-|        Outfit        |
-| -------- | --------- |
-| id       | integer   |
-| date     | date      |
-| shirt_id | reference |
-| pant_id  | reference |
+<table>
+  <tr>
+    <td colspan="2">Outfits</td>
+  </tr>
+  <tr>
+    <td>id</td>
+    <td>integer</td>
+  </tr>
+  <tr>
+    <td>date</td>
+    <td>date</td>
+  </tr>
+  <tr>
+    <td>shirt_id</td>
+    <td>reference</td>
+  </tr>
+  <tr>
+    <td>pant_id</td>
+    <td>reference</td>
+  </tr>
+</table>
 
 __Decision Trees__
 

@@ -10,10 +10,32 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180224050022) do
+ActiveRecord::Schema.define(version: 20180224200525) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "outfits", force: :cascade do |t|
+    t.date "date"
+    t.bigint "shirt_id"
+    t.bigint "pant_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["pant_id"], name: "index_outfits_on_pant_id"
+    t.index ["shirt_id"], name: "index_outfits_on_shirt_id"
+  end
+
+  create_table "pants", force: :cascade do |t|
+    t.string "color"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "shirts", force: :cascade do |t|
+    t.string "color"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "provider", default: "email", null: false
@@ -44,4 +66,6 @@ ActiveRecord::Schema.define(version: 20180224050022) do
     t.index ["uid", "provider"], name: "index_users_on_uid_and_provider", unique: true
   end
 
+  add_foreign_key "outfits", "pants"
+  add_foreign_key "outfits", "shirts"
 end

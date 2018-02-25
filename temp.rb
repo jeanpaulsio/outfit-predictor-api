@@ -33,6 +33,7 @@ test = ['mon']
 
 predicted_shirt = shirt_dec_tree.predict(test)
 
+puts "Monday Prediction:"
 puts "Predicted Shirt: #{predicted_shirt}"
 # => Predicted Shirt: black
 

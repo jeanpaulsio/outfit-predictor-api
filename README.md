@@ -132,3 +132,31 @@ puts "Predicted Pants: #{predicted_pant}"
 # => Predicted Pants: olive
 ```
 
+
+Adding a CRA client
+
+```
+create-react-app client
+cd client
+```
+
+Setting up the proxy
+
+```
+  "proxy": {
+    "/api/*": {
+      "target": "http://localhost:3001"
+    }
+  }
+```
+
+Add `gem 'foreman', '~> 0.84.0'` to gemfile
+
+Create a `Procfile`
+
+```
+web: cd client && PORT=3000 npm start
+api: rails server -p 3001
+```
+
+Now you can run `foreman start`

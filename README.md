@@ -1,3 +1,10 @@
+# TODO
+
+* restrict API calls until 9am on any given day
+* CRUD interface for outfits
+* show previous day + previous prediction
+* create prediction table
+
 # Outfit Predictor
 
 Using a [Decision Tree](https://github.com/igrigorik/decisiontree) to predict outfits

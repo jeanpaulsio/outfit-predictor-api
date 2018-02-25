@@ -3,7 +3,7 @@ class PredictOutfitService
   def initialize(outfits)
     @outfits = outfits
     # @date    = Date.today.strftime('%a')
-    @date    = 'Mon'
+    @date    = 'Wed'
   end
 
   def execute

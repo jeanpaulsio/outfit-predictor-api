@@ -3,4 +3,4 @@ import prediction from "./prediction_reducer";
 
 export default combineReducers({
   prediction
-})
+});

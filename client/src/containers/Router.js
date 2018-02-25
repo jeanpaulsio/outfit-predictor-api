@@ -7,7 +7,7 @@ function Router() {
     <BrowserRouter>
       <Route exact path="/" component={Main} />
     </BrowserRouter>
-  )
+  );
 }
 
 export default Router;

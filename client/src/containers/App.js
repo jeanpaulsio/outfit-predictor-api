@@ -2,8 +2,8 @@ import React, { Component } from "react";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import axios from "axios";
 
-import Shirt from "./components/Shirt";
-import Pants from "./components/Pants";
+import Shirt from "../components/Shirt";
+import Pants from "../components/Pants";
 
 const Home = () => (
   <div>

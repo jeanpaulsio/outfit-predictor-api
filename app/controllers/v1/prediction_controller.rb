@@ -5,7 +5,7 @@ module V1
       @outfit    = Outfit.all
       @predictor = PredictOutfitService.new(@outfit).execute
 
-      render json: @predictor
+      json_response(@predictor)
     end
   end
 end

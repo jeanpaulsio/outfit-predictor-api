@@ -4,6 +4,7 @@
 * CRUD interface for outfits
 * show previous day + previous prediction
 * create prediction table
+* https://stackoverflow.com/questions/22723364/how-to-limit-a-model-to-create-one-record-per-day
 
 # Outfit Predictor
 
@@ -14,6 +15,24 @@ Using a [Decision Tree](https://github.com/igrigorik/decisiontree) to predict ou
 
 <table>
   <tr>
+    <td colspan="2">Colors</td>
+  </tr>
+  <tr>
+    <td>id</td>
+    <td>integer</td>
+  </tr>
+  <tr>
+    <td>name</td>
+    <td>string</td>
+  </tr>
+  <tr>
+    <td>hex</td>
+    <td>string</td>
+  </tr>
+</table>
+
+<table>
+  <tr>
     <td colspan="2">Shirts</td>
   </tr>
   <tr>
@@ -21,8 +40,8 @@ Using a [Decision Tree](https://github.com/igrigorik/decisiontree) to predict ou
     <td>integer</td>
   </tr>
   <tr>
-    <td>color</td>
-    <td>string</td>
+    <td>color_id</td>
+    <td>reference</td>
   </tr>
 </table>
 
@@ -35,8 +54,8 @@ Using a [Decision Tree](https://github.com/igrigorik/decisiontree) to predict ou
     <td>integer</td>
   </tr>
   <tr>
-    <td>color</td>
-    <td>string</td>
+    <td>color_id</td>
+    <td>reference</td>
   </tr>
 </table>
 

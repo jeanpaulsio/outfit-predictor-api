@@ -3,4 +3,7 @@ class Color < ApplicationRecord
 
   validates :name, presence: true, uniqueness: { case_sensitive: false }
   validates :hex,  presence: true, format: { with: HEX_CODE_REGEX }
+
+  has_many :shirts
+  has_many :pants
 end

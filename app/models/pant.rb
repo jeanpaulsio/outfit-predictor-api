@@ -1,3 +1,3 @@
 class Pant < ApplicationRecord
-  validates :color, presence: true, uniqueness: { case_sensitive: false }
+  belongs_to :color
 end

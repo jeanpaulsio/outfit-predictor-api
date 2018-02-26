@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180226024057) do
+ActiveRecord::Schema.define(version: 20180226032004) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -34,17 +34,17 @@ ActiveRecord::Schema.define(version: 20180226024057) do
   end
 
   create_table "pants", force: :cascade do |t|
-    t.string "color"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["color"], name: "index_pants_on_color", unique: true
+    t.bigint "color_id"
+    t.index ["color_id"], name: "index_pants_on_color_id"
   end
 
   create_table "shirts", force: :cascade do |t|
-    t.string "color"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["color"], name: "index_shirts_on_color", unique: true
+    t.bigint "color_id"
+    t.index ["color_id"], name: "index_shirts_on_color_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -78,4 +78,6 @@ ActiveRecord::Schema.define(version: 20180226024057) do
 
   add_foreign_key "outfits", "pants"
   add_foreign_key "outfits", "shirts"
+  add_foreign_key "pants", "colors"
+  add_foreign_key "shirts", "colors"
 end

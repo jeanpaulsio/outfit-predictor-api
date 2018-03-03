@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { object, func } from "prop-types";
 import { connect } from "react-redux";
 import moment from "moment";
+import { Container } from "semantic-ui-react";
 
 import * as actions from "../actions";
 import Shirt from "../components/Shirt";
@@ -19,12 +20,12 @@ class Main extends Component {
 
   render() {
     return (
-      <div>
+      <Container>
         <h1>Outfit Predictor</h1>
         <h2>Today is a {moment().format('dddd')}</h2>
         <Shirt fill={this.props.prediction.shirt} />
         <Pants fill={this.props.prediction.pants} />
-      </div>
+      </Container>
     );
   }
 }

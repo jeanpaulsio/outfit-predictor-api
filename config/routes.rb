@@ -4,6 +4,7 @@ Rails.application.routes.draw do
       mount_devise_token_auth_for 'User', at: 'auth'
       get 'predict' => 'prediction#predict'
       resources :colors
+      resources :outfits
     end
   end
 

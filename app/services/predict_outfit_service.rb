@@ -2,8 +2,7 @@
 class PredictOutfitService
   def initialize(outfits)
     @outfits = outfits
-    # @date    = Date.today.strftime('%a')
-    @date    = 'Fri'
+    @date    = Date.today.strftime('%a')
   end
 
   def execute
@@ -15,7 +14,6 @@ class PredictOutfitService
       train_pant_colors << [outfit.shirt.color.hex, outfit.pant.color.hex]
     end
     puts train_pant_colors
-
 
     shirt_decision_tree = create_tree('Day', train_shirt_colors)
     shirt_decision      = make_decision(@date, shirt_decision_tree)

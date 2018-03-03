@@ -77,7 +77,11 @@ outfits = [
   { shirt: colors[:light_blue], pant: colors[:gray],        date: '2018-2-16' },
   { shirt: colors[:light_blue], pant: colors[:beige],       date: '2018-2-19' },
   { shirt: colors[:pink],       pant: colors[:gray],        date: '2018-2-20' },
-  { shirt: colors[:light_blue], pant: colors[:denim],       date: '2018-2-23' }
+  { shirt: colors[:light_blue], pant: colors[:denim],       date: '2018-2-23' },
+  { shirt: colors[:pink],       pant: colors[:gray],        date: '2018-2-26' },
+  { shirt: colors[:red],        pant: colors[:black],       date: '2018-2-27' },
+  { shirt: colors[:dark_gray],  pant: colors[:olive],       date: '2018-2-28' },
+  { shirt: colors[:light_blue], pant: colors[:black],       date: '2018-3-2' }
 ]
 
 outfits.each do |outfit|

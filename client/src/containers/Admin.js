@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { array, func } from "prop-types";
 import { connect } from "react-redux";
 import moment from "moment";
+import { Table } from "semantic-ui-react";
 
 import * as actions from "../actions";
 import "./Admin.css";
@@ -17,29 +18,47 @@ class Admin extends Component {
   }
 
   render() {
+    const currentDayOfWeek = moment().format("ddd");
+
     return (
       <section>
-        {this.props.outfits.map(outfit => {
-          return (
-            <div key={outfit.id} className="outfit-list-item">
-              <div className="date">{moment(outfit.date, "YYYY-MM-DD").format("MMM Do")}</div>
-              <div className="shirt">
-                Shirt:
-                <div
-                  className="hex-square"
-                  style={{ backgroundColor: outfit.shirt_color.hex }}
-                />
-              </div>
-              <div className="pant">
-                Pants:
-                <div
-                  className="hex-square"
-                  style={{ backgroundColor: outfit.pant_color.hex }}
-                />
-              </div>
-            </div>
-          );
-        })}
+        <Table celled padded>
+          <Table.Header>
+            <Table.Row>
+              <Table.HeaderCell singleLine>Date</Table.HeaderCell>
+              <Table.HeaderCell>Shirt</Table.HeaderCell>
+              <Table.HeaderCell>Pants</Table.HeaderCell>
+            </Table.Row>
+          </Table.Header>
+
+          <Table.Body>
+            {this.props.outfits.map(outfit => {
+              const outfitDay = moment(outfit.date, "YYYY-MM-DD").format("ddd");
+              return (
+                <Table.Row
+                  key={outfit.id}
+                  positive={currentDayOfWeek === outfitDay}
+                >
+                  <Table.Cell>
+                    {moment(outfit.date, "YYYY-MM-DD").format("ddd MMM Do")}
+                  </Table.Cell>
+                  <Table.Cell>
+                    <div
+                      className="hex-square"
+                      style={{ backgroundColor: outfit.shirt_color.hex }}
+                    />
+                  </Table.Cell>
+                  <Table.Cell>
+                    <div
+                      className="hex-square"
+                      style={{ backgroundColor: outfit.pant_color.hex }}
+                    />
+                  </Table.Cell>
+                </Table.Row>
+              );
+            })}
+          </Table.Body>
+        </Table>
       </section>
     );
   }

@@ -22,7 +22,7 @@ class Main extends Component {
   render() {
     return (
       <section className="main-container">
-        <Favicon url={`favicons/${this.props.prediction.shirt}.png`} />
+        <Favicon url={`static/favicons/${this.props.prediction.shirt}.png`} />
         <Shirt fill={this.props.prediction.shirt} />
         <Pants fill={this.props.prediction.pants} />
       </section>

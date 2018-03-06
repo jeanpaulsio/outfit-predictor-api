@@ -1,13 +1,13 @@
 import React, { Component } from "react";
 import { object, func } from "prop-types";
 import { connect } from "react-redux";
+import Favicon from "react-favicon";
 import "./Main.css";
 
 import * as actions from "../actions";
 import Shirt from "../components/Shirt";
 import Pants from "../components/Pants";
-
-import Favicon from "react-favicon"
+import { chooseFavicon } from "../helpers/utils";
 
 class Main extends Component {
   static propTypes = {
@@ -20,9 +20,13 @@ class Main extends Component {
   }
 
   render() {
+    if (!this.props.prediction.shirt) return null;
+
+    const favicon = chooseFavicon(this.props.prediction.shirt);
+
     return (
       <section className="main-container">
-        <Favicon url={`static/favicons/${this.props.prediction.shirt}.png`} />
+        <Favicon url={favicon} />
         <Shirt fill={this.props.prediction.shirt} />
         <Pants fill={this.props.prediction.pants} />
       </section>

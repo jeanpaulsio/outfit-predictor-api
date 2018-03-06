@@ -1,0 +1,17 @@
+.outfit-list-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.outfit-list-item > * {
+  margin-left: .5em;
+  margin-right: .5em;
+}
+
+.hex-square {
+  height: 10px;
+  width: 10px;
+  display: inline-block;
+  margin-left: .5em;
+}

@@ -4,6 +4,7 @@ import DocumentTitle from "react-document-title";
 import moment from "moment";
 
 import Main from "./Main";
+import Admin from "./Admin";
 import ColorsIndex from "./ColorsIndex";
 
 function Router() {
@@ -12,6 +13,7 @@ function Router() {
       <BrowserRouter>
         <div>
           <Route exact path="/" component={Main} />
+          <Route exact path="/admin" component={Admin} />
           <Route exact path="/colors" component={ColorsIndex} />
         </div>
       </BrowserRouter>

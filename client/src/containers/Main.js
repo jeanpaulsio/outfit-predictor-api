@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import { object, func } from "prop-types";
 import { connect } from "react-redux";
 import Favicon from "react-favicon";
+import moment from "moment";
+import { Header, Container } from "semantic-ui-react";
 import "./Main.css";
 
 import * as actions from "../actions";
@@ -19,8 +21,25 @@ class Main extends Component {
     this.props.predictOutfit();
   }
 
+  handleNoPrediction = () => {
+    const date = moment().format("dddd");
+    const isWeekend = date === "Sunday" || date === "Saturday";
+
+    if (isWeekend) {
+      return (
+        <Container>
+          <Header as="h3" textAlign="center">
+            Sorry! No weekend predictions! :(
+          </Header>
+        </Container>
+      );
+    }
+
+    return null;
+  };
+
   render() {
-    if (!this.props.prediction.shirt) return null;
+    if (!this.props.prediction.shirt) return this.handleNoPrediction();
 
     const favicon = chooseFavicon(this.props.prediction.shirt);
 

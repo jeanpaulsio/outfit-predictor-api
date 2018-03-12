@@ -9,6 +9,7 @@ gem 'active_model_serializers', '~> 0.10.7'
 gem 'decisiontree',             '~> 0.5.0'
 gem 'devise'
 gem 'devise_token_auth',        '~> 0.1.42'
+gem 'hirb',                     '~> 0.7.3'
 gem 'jbuilder',                 '~> 2.5'
 gem 'omniauth-github',          '~> 1.3'
 gem 'pg',                       '>= 0.18', '< 2.0'
@@ -23,6 +24,11 @@ gem 'uglifier',                 '>= 1.3.0'
 # gem 'bcrypt', '~> 3.1.7'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
+
+group :test do
+  gem 'minitest-reporters',       '~> 1.1', '>= 1.1.19'
+  gem 'rails-controller-testing', '~> 1.0', '>= 1.0.2'
+end
 
 group :development, :test do
   gem 'byebug', platforms: %i[mri mingw x64_mingw]

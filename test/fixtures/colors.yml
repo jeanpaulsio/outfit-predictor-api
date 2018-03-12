@@ -1,9 +1,43 @@
-# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+dark_gray:
+  name: dark_gray
+  hex: '#3f3f3f'
 
-one:
-  name: MyString
-  hex: MyString
+black:
+  name: black
+  hex: '#232323'
 
-two:
-  name: MyString
-  hex: MyString
+denim:
+  name: denim
+  hex: '#577088'
+
+pink:
+  name: pink
+  hex: '#ffb7e1'
+
+white:
+  name: white
+  hex: '#f4f4f4'
+
+red:
+  name: red
+  hex: '#e82929'
+
+light_blue:
+  name: light_blue
+  hex: '#95c6f4'
+
+light_green:
+  name: light_green
+  hex: '#bacca7'
+
+gray:
+  name: gray
+  hex: '#a8a8a8'
+
+olive:
+  name: olive
+  hex: '#526d47'
+
+beige:
+  name: beige
+  hex: '#bca07c'

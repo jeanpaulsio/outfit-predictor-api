@@ -5,6 +5,8 @@ Rails.application.routes.draw do
       get 'predict' => 'prediction#predict'
       resources :colors
       resources :outfits
+      resources :shirts
+      resources :pants
     end
   end
 

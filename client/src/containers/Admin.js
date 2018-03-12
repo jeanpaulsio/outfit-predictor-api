@@ -33,14 +33,14 @@ class Admin extends Component {
           <Grid columns={2} stackable>
             <Grid.Column>
               <Form onSubmit={() => console.log("Submit")}>
-                  <Form.Input fluid label="Date" placeholder="Date" />
-                  <Dropdown
-                    placeholder="Select Country"
-                    fluid
-                    search
-                    selection
-                    options={countryOptions}
-                  />
+                <Form.Input fluid label="Date" placeholder="Date" />
+                <Dropdown
+                  placeholder="Select Country"
+                  fluid
+                  search
+                  selection
+                  options={countryOptions}
+                />
                 <Form.Button>Submit</Form.Button>
               </Form>
             </Grid.Column>
@@ -62,8 +62,7 @@ class Admin extends Component {
                     return (
                       <Table.Row
                         key={outfit.id}
-                        positive={currentDayOfWeek === outfitDay}
-                      >
+                        positive={currentDayOfWeek === outfitDay}>
                         <Table.Cell>
                           {moment(outfit.date, "YYYY-MM-DD").format(
                             "ddd MMM Do"

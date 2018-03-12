@@ -1,7 +1,5 @@
-# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+denim_pants:
+  color: denim
 
-one:
-  color: MyString
-
-two:
-  color: MyString
+olive_pants:
+  color: olive

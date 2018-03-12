@@ -1,11 +1,9 @@
-# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
-
 one:
   date: 2018-02-24
-  shirt: one
-  pant: one
+  shirt: white_shirt
+  pant: denim_pants
 
 two:
-  date: 2018-02-24
-  shirt: two
-  pant: two
+  date: 2018-02-25
+  shirt: black_shirt
+  pant: olive_pants

@@ -1,7 +1,5 @@
-# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+white_shirt:
+  color: white
 
-one:
-  color: MyString
-
-two:
-  color: MyString
+black_shirt:
+  color: black

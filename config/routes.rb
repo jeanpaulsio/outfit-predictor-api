@@ -3,7 +3,7 @@ Rails.application.routes.draw do
     namespace :v1 do
       mount_devise_token_auth_for 'User', at: 'auth'
       get 'predict' => 'prediction#predict'
-      resources :colors
+      resources :colors, only: %i[index create update destroy]
       resources :outfits
       resources :shirts
       resources :pants

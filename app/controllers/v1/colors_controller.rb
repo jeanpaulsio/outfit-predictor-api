@@ -14,7 +14,7 @@ module V1
     end
 
     def update
-      @color.update(color_params)
+      @color.update!(color_params)
       json_response(@color)
     end
 

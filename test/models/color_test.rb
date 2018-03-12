@@ -21,7 +21,7 @@ class ColorTest < ActiveSupport::TestCase
     assert_not dark_gray_clone.valid?
 
     message = dark_gray_clone.errors.messages[:name][0]
-    assert_equal message, 'has already been taken'
+    assert_equal 'has already been taken', message
   end
 
   test 'hex should be present' do
@@ -40,6 +40,6 @@ class ColorTest < ActiveSupport::TestCase
     assert_not @dark_gray.valid?
 
     message = @dark_gray.errors.messages[:hex][0]
-    assert_equal message, 'is invalid'
+    assert_equal 'is invalid', message
   end
 end

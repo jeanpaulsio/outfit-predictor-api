@@ -14,14 +14,16 @@ colors = {
   light_green: '#bacca7',
   gray:        '#a8a8a8',
   olive:       '#526d47',
-  beige:       '#bca07c'
+  beige:       '#bca07c',
+  mint:        '#00ffd0',
+  light_gray:  '#dddddd'
 }
 
 colors.each do |key, value|
   Color.create!(name: key, hex: value)
 end
 
-puts 'Created 11 Colors'
+puts "Created Colors"
 
 colors.each_key do |key|
   s = Shirt.new
@@ -81,7 +83,12 @@ outfits = [
   { shirt: colors[:pink],       pant: colors[:gray],        date: '2018-2-26' },
   { shirt: colors[:red],        pant: colors[:black],       date: '2018-2-27' },
   { shirt: colors[:dark_gray],  pant: colors[:olive],       date: '2018-2-28' },
-  { shirt: colors[:light_blue], pant: colors[:black],       date: '2018-3-2' }
+  { shirt: colors[:light_blue], pant: colors[:black],       date: '2018-3-2' },
+  { shirt: colors[:mint],       pant: colors[:gray],        date: '2018-3-5' },
+  { shirt: colors[:red],        pant: colors[:black],       date: '2018-3-6' },
+  { shirt: colors[:gray],       pant: colors[:denim],       date: '2018-3-7' },
+  { shirt: colors[:light_gray], pant: colors[:denim],       date: '2018-3-8' },
+  { shirt: colors[:dark_gray],  pant: colors[:olive],       date: '2018-3-9' }
 ]
 
 outfits.each do |outfit|

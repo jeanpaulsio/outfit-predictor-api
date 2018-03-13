@@ -7,7 +7,7 @@ class ShirtTest < ActiveSupport::TestCase
     white_shirt.color = white
 
     assert_not white_shirt.valid?
-    
+
     message = white_shirt.errors.messages[:color_id][0]
     assert_match(/has already been taken/, message)
   end

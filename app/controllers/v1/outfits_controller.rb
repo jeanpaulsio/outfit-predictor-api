@@ -1,6 +1,8 @@
 module V1
   # :nodoc:
   class OutfitsController < ApplicationController
+    before_action :authenticate_v1_user!, only: [:create]
+
     def index
       @outfits = Outfit.order(date: :desc)
       json_response(@outfits)

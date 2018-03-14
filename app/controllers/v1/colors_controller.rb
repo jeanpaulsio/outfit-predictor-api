@@ -1,7 +1,7 @@
 module V1
   # :nodoc:
   class ColorsController < ApplicationController
-    before_action :set_color, only: %i[show update destroy]
+    before_action :set_color, only: %i[update destroy]
 
     def index
       @colors = Color.all

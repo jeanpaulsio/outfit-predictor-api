@@ -53,6 +53,16 @@ module V1
       assert_match(/Color must exist/, @response.body)
     end
 
+    test 'PATCH /shirts/:id with a taken color' do
+      patch v1_shirt_path(@white_shirt), headers: {}, xhr: true, params: {
+        shirt: { color_id: colors(:black).id }
+      }
+
+      assert_equal 422, status
+      @white_shirt.reload
+      assert_match(/Color has already been taken/, @response.body)
+    end
+
     test 'DELETE /shirts/:id' do
       # assert @white_shirt.destroy
       # assert_raise(ActiveRecord::RecordNotFound) { @white_shirt.reload }

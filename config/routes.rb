@@ -5,7 +5,7 @@ Rails.application.routes.draw do
       get 'predict' => 'prediction#predict'
       resources :colors, only: %i[index create update destroy]
       resources :shirts, only: %i[index create update destroy]
-      resources :pants
+      resources :pants,  only: %i[index create update destroy]
       resources :outfits
     end
   end

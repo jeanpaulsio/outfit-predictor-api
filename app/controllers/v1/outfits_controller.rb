@@ -14,7 +14,7 @@ module V1
     private
 
     def outfit_params
-      params.require(:outfit).permit(:shirt_id, :pant_id)
+      params.require(:outfit).permit(:shirt_id, :pant_id, :date)
     end
   end
 end

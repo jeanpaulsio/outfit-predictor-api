@@ -1,9 +1,9 @@
-one:
-  date: 2018-02-24
+white_and_denim:
+  date: 2018-01-01
   shirt: white_shirt
   pant: denim_pants
 
-two:
-  date: 2018-02-25
+black_and_olive:
+  date: 2018-01-02
   shirt: black_shirt
   pant: olive_pants

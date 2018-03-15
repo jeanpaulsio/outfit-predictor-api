@@ -173,6 +173,7 @@ class Admin extends Component {
                       Submit
                     </Button>
                   </Form>
+                  <Header as="h1">Add Color</Header>
                 </section>
               )}
             </Grid.Column>

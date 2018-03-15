@@ -12,6 +12,7 @@ import {
   Input,
   Table
 } from "semantic-ui-react";
+import { ChromePicker } from "react-color";
 
 import * as actions from "../actions";
 import "./Admin.css";
@@ -33,7 +34,9 @@ class Admin extends Component {
     date: "",
     selectedShirt: "",
     selectedPants: "",
-    password: ""
+    password: "",
+    colorName: "",
+    hex: "000000"
   };
 
   state = this.initialState;
@@ -78,6 +81,15 @@ class Admin extends Component {
       this.setState(this.initialState)
     );
   };
+
+  handleAddColor = () => {
+    const params = {
+      name: this.state.colorName,
+      hex: this.state.hex
+    }
+
+    console.log(params)
+  }
 
   handleAuthentication = () => {
     this.props.authenticate(
@@ -178,7 +190,7 @@ class Admin extends Component {
                     <Form.Field>
                       <Input
                         type="text"
-                        placeholder="Color"
+                        placeholder="Color Name"
                         value={this.state.colorName}
                         onChange={e =>
                           this.setState({ colorName: e.target.value })
@@ -186,17 +198,14 @@ class Admin extends Component {
                       />
                     </Form.Field>
                     <Form.Field>
-                      <Input
-                        type="text"
-                        placeholder="Hex"
-                        value={this.state.hex}
-                        onChange={e =>
-                          this.setState({
-                            hex: e.target.value
-                          })
-                        }
+                      <ChromePicker
+                        color={this.state.hex}
+                        onChangeComplete={({ hex }) => this.setState({ hex })}
                       />
                     </Form.Field>
+                    <Button primary type="submit" onClick={this.handleAddColor}>
+                      Add Color
+                    </Button>
                   </Form>
                 </section>
               )}

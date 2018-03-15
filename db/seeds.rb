@@ -23,17 +23,25 @@ colors.each do |key, value|
   Color.create!(name: key, hex: value)
 end
 
-puts "Created Colors"
+puts 'Created Colors'
 
-colors.each_key do |key|
+shirt_colors = %w[pink black red dark_gray white
+                  denim light_blue mint gray light_gray]
+pants_colors = %w[gray olive light_green denim beige black]
+
+shirt_colors.each do |color|
+  c = Color.find_by_name(color)
   s = Shirt.new
-  p = Pant.new
-  c = Color.find_by_name(key)
 
   s.color = c
-  p.color = c
-
   s.save
+end
+
+pants_colors.each do |color|
+  c = Color.find_by_name(color)
+  p = Pant.new
+
+  p.color = c
   p.save
 end
 
@@ -90,7 +98,8 @@ outfits = [
   { shirt: colors[:light_gray], pant: colors[:denim],       date: '2018-3-8' },
   { shirt: colors[:dark_gray],  pant: colors[:olive],       date: '2018-3-9' },
   { shirt: colors[:white],      pant: colors[:black],       date: '2018-3-12' },
-  { shirt: colors[:gray],       pant: colors[:black],       date: '2018-3-13' }
+  { shirt: colors[:gray],       pant: colors[:black],       date: '2018-3-13' },
+  { shirt: colors[:dark_gray],  pant: colors[:denim],       date: '2018-3-14' }
 ]
 
 outfits.each do |outfit|

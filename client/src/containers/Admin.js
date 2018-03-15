@@ -33,7 +33,7 @@ class Admin extends Component {
     date: "",
     selectedShirt: "",
     selectedPants: "",
-    password: "",
+    password: ""
   };
 
   state = this.initialState;
@@ -227,12 +227,18 @@ class Admin extends Component {
                         </Table.Cell>
                         <Table.Cell>
                           <div
+                            onMouseEnter={() =>
+                              console.log(outfit.shirt_color.name)
+                            }
                             className="hex-square"
                             style={{ backgroundColor: outfit.shirt_color.hex }}
                           />
                         </Table.Cell>
                         <Table.Cell>
                           <div
+                            onMouseEnter={() =>
+                              console.log(outfit.pant_color.name)
+                            }
                             className="hex-square"
                             style={{ backgroundColor: outfit.pant_color.hex }}
                           />

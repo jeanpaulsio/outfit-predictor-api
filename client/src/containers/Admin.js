@@ -33,7 +33,7 @@ class Admin extends Component {
     date: "",
     selectedShirt: "",
     selectedPants: "",
-    password: ""
+    password: "",
   };
 
   state = this.initialState;
@@ -174,6 +174,30 @@ class Admin extends Component {
                     </Button>
                   </Form>
                   <Header as="h1">Add Color</Header>
+                  <Form>
+                    <Form.Field>
+                      <Input
+                        type="text"
+                        placeholder="Color"
+                        value={this.state.colorName}
+                        onChange={e =>
+                          this.setState({ colorName: e.target.value })
+                        }
+                      />
+                    </Form.Field>
+                    <Form.Field>
+                      <Input
+                        type="text"
+                        placeholder="Hex"
+                        value={this.state.hex}
+                        onChange={e =>
+                          this.setState({
+                            hex: e.target.value
+                          })
+                        }
+                      />
+                    </Form.Field>
+                  </Form>
                 </section>
               )}
             </Grid.Column>

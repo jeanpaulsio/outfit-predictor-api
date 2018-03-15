@@ -1,3 +1,4 @@
+import qs from "qs";
 import axios from "axios";
 import {
   FETCH_OUTFITS_SUCCESS,
@@ -37,24 +38,16 @@ export const fetchPants = () => async dispatch => {
   }
 };
 
-export const createOutfit = (params, callback) => async dispatch => {
-  const headers = {
-    "Content-Type": "application/json",
-    "access_token": "3gnQt1U0_lq5aIBZjiHjsA",
-    "token-type": "Bearer",
-    client: "axYea7j5gV4bcCNzLdZgiA",
-    expiry: "1522268043",
-    uid: "sio.jeanpaul@gmail.com"
-  };
-
+export const createOutfit = (params, config, callback) => async dispatch => {
   try {
-    const { data } = await axios.post(
-      `/api/v1/outfits?client=${headers["client"]}&uid=${
-        headers["uid"]
-      }&access-token=${headers["access_token"]}&expiry=${headers["expiry"]}`,
-      params
-    );
-    dispatch({ type: CREATE_OUTFITS_SUCCESS, payload: data });
+    const search = qs.stringify({
+      client: config.client,
+      uid: config.uid,
+      token: config.token,
+      expiry: config.expiry
+    });
+    const response = await axios.post(`/api/v1/outfits?${search}`, params);
+    dispatch({ type: CREATE_OUTFITS_SUCCESS, payload: response.data });
     callback();
   } catch (e) {
     dispatch({ type: CREATE_OUTFITS_FAIL });

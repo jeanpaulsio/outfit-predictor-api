@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { array, func } from "prop-types";
+import { array, func, object } from "prop-types";
 import { connect } from "react-redux";
 import moment from "moment";
 import {
@@ -18,9 +18,11 @@ import "./Admin.css";
 
 class Admin extends Component {
   static propTypes = {
+    auth: object,
     outfits: array,
     shirts: array,
     pants: array,
+    authenticate: func,
     fetchOutfits: func,
     fetchShirts: func,
     fetchPants: func,
@@ -30,7 +32,8 @@ class Admin extends Component {
   initialState = {
     date: "",
     selectedShirt: "",
-    selectedPants: ""
+    selectedPants: "",
+    password: ""
   };
 
   state = this.initialState;
@@ -56,13 +59,34 @@ class Admin extends Component {
   handleSubmitOutfit = e => {
     e.preventDefault();
 
+    const { auth } = this.props;
+
     const params = {
       shirt_id: this.state.selectedShirt,
       pant_id: this.state.selectedPants,
       date: this.state.date
     };
 
-    this.props.createOutfit(params, () => this.setState(this.initialState));
+    const config = {
+      client: auth.client,
+      uid: auth.uid,
+      token: auth.token,
+      expiry: auth.expiry
+    };
+
+    this.props.createOutfit(params, config, () =>
+      this.setState(this.initialState)
+    );
+  };
+
+  handleAuthentication = () => {
+    this.props.authenticate(
+      {
+        email: "sio.jeanpaul@gmail.com",
+        password: this.state.password
+      },
+      () => this.setState(this.initialState)
+    );
   };
 
   render() {
@@ -87,45 +111,70 @@ class Admin extends Component {
       this.state.selectedShirt === this.initialState.selectedShirt ||
       this.state.selectedPants === this.initialState.selectedPants;
 
+    const isAuthenticated = Object.keys(this.props.auth).length > 0;
+
     return (
       <section>
         <Container style={{ padding: "5em 0em" }}>
           <Grid columns={2} stackable>
             <Grid.Column>
-              <Header as="h1">Add Outfit</Header>
-              <Form onSubmit={this.handleSubmitOutfit}>
-                <Form.Field>
-                  <Input
-                    type="date"
-                    placeholder="Date"
-                    value={this.state.date}
-                    onChange={this.handleSelectDate}
-                  />
-                </Form.Field>
-                <Form.Field>
-                  <Dropdown
-                    search
-                    selection
-                    placeholder="Shirt Color"
-                    value={this.state.selectedShirt}
-                    options={shirts}
-                    onChange={this.handleSelectShirt}
-                  />
-                </Form.Field>
-                <Form.Field>
-                  <Dropdown
-                    search
-                    selection
-                    placeholder="Pants Color"
-                    value={this.state.selectedPants}
-                    options={pants}
-                    onChange={this.handleSelectPants}
-                  />
-                </Form.Field>
-                <Button primary type="submit" disabled={isDisabled}>
-                  Submit
-                </Button>
-              </Form>
+              {!isAuthenticated && (
+                <Form onSubmit={this.handleAuthentication}>
+                  <Form.Field>
+                    <Input
+                      type="password"
+                      placeholder="password"
+                      value={this.state.password}
+                      onChange={e =>
+                        this.setState({ password: e.target.value })
+                      }
+                    />
+                  </Form.Field>
+                  <Form.Field>
+                    <Button onClick={this.handleAuthentication}>
+                      Authenticate
+                    </Button>
+                  </Form.Field>
+                </Form>
+              )}
+              {isAuthenticated && (
+                <section>
+                  <Header as="h1">Add Outfit</Header>
+                  <Form onSubmit={this.handleSubmitOutfit}>
+                    <Form.Field>
+                      <Input
+                        type="date"
+                        placeholder="Date"
+                        value={this.state.date}
+                        onChange={this.handleSelectDate}
+                      />
+                    </Form.Field>
+                    <Form.Field>
+                      <Dropdown
+                        search
+                        selection
+                        placeholder="Shirt Color"
+                        value={this.state.selectedShirt}
+                        options={shirts}
+                        onChange={this.handleSelectShirt}
+                      />
+                    </Form.Field>
+                    <Form.Field>
+                      <Dropdown
+                        search
+                        selection
+                        placeholder="Pants Color"
+                        value={this.state.selectedPants}
+                        options={pants}
+                        onChange={this.handleSelectPants}
+                      />
+                    </Form.Field>
+                    <Button primary type="submit" disabled={isDisabled}>
+                      Submit
+                    </Button>
+                  </Form>
+                </section>
+              )}
             </Grid.Column>
             <Grid.Column>
               <Table celled padded>
@@ -177,6 +226,7 @@ class Admin extends Component {
 }
 
 const mapStateToProps = state => ({
+  auth: state.auth,
   outfits: state.outfits,
   shirts: state.shirts,
   pants: state.pants

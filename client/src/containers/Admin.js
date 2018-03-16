@@ -27,7 +27,9 @@ class Admin extends Component {
     fetchOutfits: func,
     fetchShirts: func,
     fetchPants: func,
-    createOutfit: func
+    fetchColors: func,
+    createOutfit: func,
+    createColor: func
   };
 
   initialState = {
@@ -45,6 +47,7 @@ class Admin extends Component {
     this.props.fetchOutfits();
     this.props.fetchShirts();
     this.props.fetchPants();
+    this.props.fetchColors();
   }
 
   handleSelectDate = e => {
@@ -86,9 +89,9 @@ class Admin extends Component {
     const params = {
       name: this.state.colorName,
       hex: this.state.hex
-    }
+    };
 
-    console.log(params)
+    this.props.createColor(params);
   }
 
   handleAuthentication = () => {

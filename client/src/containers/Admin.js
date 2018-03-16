@@ -150,12 +150,30 @@ class Admin extends Component {
       text: pant.color.name
     }));
 
-    const colors = this.props.colors.map(color => ({
-      ...color,
-      key: color.id,
-      value: color.id,
-      text: color.name
-    }));
+    const flattenedShirts = this.props.shirts.map(shirt => shirt.color.name);
+    const flattenedPants = this.props.pants.map(pant => pant.color.name);
+
+    const availableShirtColors = this.props.colors
+      .filter(color => {
+        return !flattenedShirts.includes(color.name);
+      })
+      .map(color => ({
+        ...color,
+        key: color.id,
+        value: color.id,
+        text: color.name
+      }));
+
+    const availablePantsColors = this.props.colors
+      .filter(color => {
+        return !flattenedPants.includes(color.name);
+      })
+      .map(color => ({
+        ...color,
+        key: color.id,
+        value: color.id,
+        text: color.name
+      }));
 
     const isDisabled =
       this.state.length === this.initialState.date ||
@@ -254,7 +272,7 @@ class Admin extends Component {
                         selection
                         placeholder="Shirt Color"
                         value={this.state.newShirtColor}
-                        options={colors}
+                        options={availableShirtColors}
                         onChange={this.handleSelectNewShirt}
                       />
                     </Form.Field>
@@ -270,7 +288,7 @@ class Admin extends Component {
                         selection
                         placeholder="Pants Color"
                         value={this.state.newPantsColor}
-                        options={colors}
+                        options={availablePantsColors}
                         onChange={this.handleSelectNewPants}
                       />
                     </Form.Field>

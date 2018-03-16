@@ -23,13 +23,16 @@ class Admin extends Component {
     outfits: array,
     shirts: array,
     pants: array,
+    colors: array,
     authenticate: func,
     fetchOutfits: func,
     fetchShirts: func,
     fetchPants: func,
     fetchColors: func,
     createOutfit: func,
-    createColor: func
+    createColor: func,
+    createShirt: func,
+    createPants: func
   };
 
   initialState = {
@@ -38,17 +41,19 @@ class Admin extends Component {
     selectedPants: "",
     password: "",
     colorName: "",
-    hex: "000000"
+    hex: "000000",
+    newShirtColor: "",
+    newPantsColor: ""
   };
 
   state = this.initialState;
 
-  componentDidMount() {
+  componentDidMount = () => {
     this.props.fetchOutfits();
     this.props.fetchShirts();
     this.props.fetchPants();
     this.props.fetchColors();
-  }
+  };
 
   handleSelectDate = e => {
     this.setState({ date: e.target.value });
@@ -86,13 +91,37 @@ class Admin extends Component {
   };
 
   handleAddColor = () => {
-    const params = {
+    this.props.createColor({
       name: this.state.colorName,
       hex: this.state.hex
-    };
+    });
+  };
 
-    this.props.createColor(params);
-  }
+  handleAddShirt = () => {
+    this.props.createShirt(
+      {
+        color_id: this.state.newShirtColor
+      },
+      () => this.setState({ newShirtColor: "" })
+    );
+  };
+
+  handleAddPants = () => {
+    this.props.createPants(
+      {
+        color_id: this.state.newPantsColor
+      },
+      () => this.setState({ newPantsColor: "" })
+    );
+  };
+
+  handleSelectNewShirt = (e, { value }) => {
+    this.setState({ newShirtColor: value });
+  };
+
+  handleSelectNewPants = (e, { value }) => {
+    this.setState({ newPantsColor: value });
+  };
 
   handleAuthentication = () => {
     this.props.authenticate(
@@ -107,18 +136,25 @@ class Admin extends Component {
   render() {
     const currentDayOfWeek = moment().format("ddd");
 
-    const shirts = this.props.shirts.slice(0).map(shirt => ({
+    const shirts = this.props.shirts.map(shirt => ({
       ...shirt,
       key: shirt.id,
       value: shirt.id,
       text: shirt.color.name
     }));
 
-    const pants = this.props.pants.slice(0).map(pant => ({
+    const pants = this.props.pants.map(pant => ({
       ...pant,
       key: pant.id,
       value: pant.id,
       text: pant.color.name
+    }));
+
+    const colors = this.props.colors.map(color => ({
+      ...color,
+      key: color.id,
+      value: color.id,
+      text: color.name
     }));
 
     const isDisabled =
@@ -210,6 +246,38 @@ class Admin extends Component {
                       Add Color
                     </Button>
                   </Form>
+                  <Header as="h1">Add Shirt</Header>
+                  <Form>
+                    <Form.Field>
+                      <Dropdown
+                        search
+                        selection
+                        placeholder="Shirt Color"
+                        value={this.state.newShirtColor}
+                        options={colors}
+                        onChange={this.handleSelectNewShirt}
+                      />
+                    </Form.Field>
+                    <Button primary type="submit" onClick={this.handleAddShirt}>
+                      Add Shirt
+                    </Button>
+                  </Form>
+                  <Header as="h1">Add Pants</Header>
+                  <Form>
+                    <Form.Field>
+                      <Dropdown
+                        search
+                        selection
+                        placeholder="Pants Color"
+                        value={this.state.newPantsColor}
+                        options={colors}
+                        onChange={this.handleSelectNewPants}
+                      />
+                    </Form.Field>
+                    <Button primary type="submit" onClick={this.handleAddPants}>
+                      Add Pants
+                    </Button>
+                  </Form>
                 </section>
               )}
             </Grid.Column>
@@ -272,7 +340,8 @@ const mapStateToProps = state => ({
   auth: state.auth,
   outfits: state.outfits,
   shirts: state.shirts,
-  pants: state.pants
+  pants: state.pants,
+  colors: state.colors
 });
 
 export default connect(mapStateToProps, actions)(Admin);

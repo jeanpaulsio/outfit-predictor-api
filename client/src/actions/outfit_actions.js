@@ -8,7 +8,11 @@ import {
   FETCH_SHIRTS_SUCCESS,
   FETCH_SHIRTS_FAIL,
   FETCH_PANTS_SUCCESS,
-  FETCH_PANTS_FAIL
+  FETCH_PANTS_FAIL,
+  CREATE_SHIRT_SUCCESS,
+  CREATE_SHIRT_FAIL,
+  CREATE_PANTS_SUCCESS,
+  CREATE_PANTS_FAIL
 } from "./types";
 
 export const fetchOutfits = () => async dispatch => {
@@ -29,12 +33,32 @@ export const fetchShirts = () => async dispatch => {
   }
 };
 
+export const createShirt = (params, callback) => async dispatch => {
+  try {
+    const { data } = await axios.post("/api/v1/shirts", params);
+    dispatch({ type: CREATE_SHIRT_SUCCESS, payload: data });
+    callback();
+  } catch (e) {
+    dispatch({ type: CREATE_SHIRT_FAIL });
+  }
+};
+
 export const fetchPants = () => async dispatch => {
   try {
     const { data } = await axios.get("/api/v1/pants");
     dispatch({ type: FETCH_PANTS_SUCCESS, payload: data });
   } catch (e) {
     dispatch({ type: FETCH_PANTS_FAIL });
+  }
+};
+
+export const createPants = (params, callback) => async dispatch => {
+  try {
+    const { data } = await axios.post("/api/v1/pants", params);
+    dispatch({ type: CREATE_PANTS_SUCCESS, payload: data });
+    callback();
+  } catch (e) {
+    dispatch({ type: CREATE_PANTS_FAIL });
   }
 };
 

@@ -5,7 +5,6 @@ import moment from "moment";
 
 import Main from "./Main";
 import Admin from "./Admin";
-import ColorsIndex from "./ColorsIndex";
 
 function Router() {
   return (
@@ -14,7 +13,6 @@ function Router() {
         <div>
           <Route exact path="/" component={Main} />
           <Route exact path="/admin" component={Admin} />
-          <Route exact path="/colors" component={ColorsIndex} />
         </div>
       </BrowserRouter>
     </DocumentTitle>

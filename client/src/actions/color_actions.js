@@ -15,10 +15,11 @@ export const fetchColors = () => async dispatch => {
   }
 }
 
-export const createColor = params => async dispatch => {
+export const createColor = (params, callback) => async dispatch => {
   try {
     const { data } = await axios.post("/api/v1/colors", params);
     dispatch({ type: CREATE_COLOR_SUCCESS, payload: data });
+    callback();
   } catch (e) {
     dispatch({ type: CREATE_COLOR_FAIL })
   }

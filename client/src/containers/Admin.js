@@ -91,10 +91,13 @@ class Admin extends Component {
   };
 
   handleAddColor = () => {
-    this.props.createColor({
-      name: this.state.colorName,
-      hex: this.state.hex
-    });
+    this.props.createColor(
+      {
+        name: this.state.colorName,
+        hex: this.state.hex
+      },
+      () => this.setState(this.initialState)
+    );
   };
 
   handleAddShirt = () => {
@@ -102,7 +105,7 @@ class Admin extends Component {
       {
         color_id: this.state.newShirtColor
       },
-      () => this.setState({ newShirtColor: "" })
+      () => this.setState(this.initialState)
     );
   };
 
@@ -111,7 +114,7 @@ class Admin extends Component {
       {
         color_id: this.state.newPantsColor
       },
-      () => this.setState({ newPantsColor: "" })
+      () => this.setState(this.initialState)
     );
   };
 
@@ -296,6 +299,24 @@ class Admin extends Component {
                       Add Pants
                     </Button>
                   </Form>
+                  <Header as="h1">Colors</Header>
+                  {this.props.colors.map(color => {
+                    return (
+                      <div
+                        key={color.id}
+                        style={{
+                          width: "100%",
+                          height: "40px",
+                          display: "flex",
+                          alignItems: "center",
+                          justifyContent: "center",
+                          backgroundColor: color.hex,
+                          fontSize: "18px"
+                        }}>
+                        {color.name}
+                      </div>
+                    );
+                  })}
                 </section>
               )}
             </Grid.Column>
